@@ -4,7 +4,7 @@ import routerPokemon from './entities/pokemon/router.js'
 import routerUser from './entities/Users/router.js';
 import CONF from './conf.js';
 
-mongoose.connect('mongodb://127.0.0.1:27017/db-ejemplo-pokemon',{
+mongoose.connect(CONF.CONECT_DB,{
 
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
