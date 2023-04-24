@@ -1,5 +1,5 @@
-import express from 'express'
-import Pokemon from './model.js'
+import Pokemon from './model.js';
+import jwt from 'jsonwebtoken';
 
 export const listSearchPokemon = async(data) => {
 
@@ -31,6 +31,7 @@ export const createPokemon = async(newPokemon) => {
 export const updatePokemon = async(id,body) => {
 
     let pokemon = await Pokemon.updateOne({_id:id},body);
+
     return pokemon;
 };
 

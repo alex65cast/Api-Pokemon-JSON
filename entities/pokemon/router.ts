@@ -2,6 +2,10 @@ import express from 'express'
 import {searchPokemonById,deletePokemon,listSearchPokemon,createPokemon,updatePokemon} from './controller.js'
 
 const router = express.Router();
+const validateToken = async(req,res,next)=>{
+    const acessToken = req.headers['authorization']
+
+};
 
 router.get('/',async (req, res, next) => {
    

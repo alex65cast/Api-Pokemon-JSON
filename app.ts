@@ -16,15 +16,19 @@ mongoose.connect('mongodb://127.0.0.1:27017/db-ejemplo-pokemon',{
 
 const app = express();
 
-const handlerError = (err,req,res,next)=>{
+const handlerError = (err:Error,req,res,next)=>{
 
   if(err.message === 'NOT_EXIST_USER'){
-    return res.status(404).json({$code:'NOT_EXIST_USER',$message:'Not exist this user'});
-  }else if(err.message === 'NOT_CANT_UPDATE'){
-    return res.status(404).json({$code:'NOT_CANT_UPDATE',$message:'There is nothing to update'});
-  }else if(err.message === 'NOT_EXIST_POKE'){
-    return res.status(404).json({$code:'NOT_EXIST_POKE',$message:'Not exist this pokemon'});
+    return res.status(404).json({code:'NOT_EXIST_USER',message:'Not exist this user'});
   }
+  if(err.message === 'NOT_CANT_UPDATE'){
+    return res.status(404).json({code:'NOT_CANT_UPDATE',message:'There is nothing to update'});
+  }
+  if(err.message === 'NOT_EXIST_POKE'){
+    return res.status(404).json({code:'NOT_EXIST_POKE',message:'Not exist this pokemon'});
+  }
+  return res.status(500).json({code:'SERVER_ERROR',message:err.message});
+  
 };
 
 app.use(express.json());

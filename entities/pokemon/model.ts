@@ -2,8 +2,18 @@ import mongoose from "mongoose";
 
 const PokemonSchema = new mongoose.Schema({
     
-    name:String,
-    type:String,
+    name:{
+        type:String,
+        required:true,
+        min:3,
+        max:100
+    },
+    type:{
+        type:String,
+        required:true,
+        min:3,
+        max:100
+    },
     description:String
 
 }, { versionKey: false });

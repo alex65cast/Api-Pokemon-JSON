@@ -1,5 +1,5 @@
 import express from 'express';
-import {searchUserById,deleteUser,listSearchUser,createUser,updateUser} from './controller.js';
+import {searchUserById,deleteUser,listSearchUser,createUser,updateUser, userLogIn} from './controller.js';
 
 const router = express.Router();
 
@@ -31,7 +31,21 @@ router.post('/',async (req, res, next) => {
 
     try {
         const newUser = await createUser(req.body);
-        return res.json(newUser);
+        return res.json("Create User");
+    } catch (error) {
+        next(error);
+    }
+
+});
+
+router.post('/login',async (req, res, next) => {
+
+    try {
+        const token = await userLogIn(req.body);
+        if (!token) {
+            return next(new Error('NOT_EXIST_USER'));
+        }
+        return res.json({token});
     } catch (error) {
         next(error);
     }
