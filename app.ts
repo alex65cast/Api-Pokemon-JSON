@@ -35,4 +35,4 @@ app.use(express.json());
 app.use('/pokemon',routerPokemon);
 app.use('/user',routerUser);
 app.use(handlerError);
-app.listen(CONF.PORT,()=>console.log('Server up in port 3000'));
+app.listen(CONF.PORT,()=>console.log('Server up in port '+CONF.PORT ));
